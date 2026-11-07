@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "research-system"
+version = "0.1.0"
+description = "Multi-agent research system: LangGraph orchestration with CrewAI and AutoGen adapters"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2",
+    "pydantic-settings",
+    "httpx",
+    "python-dotenv",
+]
+
+[project.optional-dependencies]
+langgraph = ["langgraph", "langchain-ollama"]
+crewai = ["crewai"]
+autogen = ["autogen-agentchat", "autogen-ext[ollama]"]
+tools = ["trafilatura", "ddgs", "chromadb"]
+api = ["fastapi", "uvicorn[standard]"]
+ui = ["streamlit"]
+dev = ["pytest", "ruff", "pre-commit"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+src = ["src"]
